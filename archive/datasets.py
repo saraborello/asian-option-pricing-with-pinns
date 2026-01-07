@@ -10,10 +10,10 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from utils import make_business_calendar
-from utils import simulate_future_gbm
-from utils import arithmetic_average
-from utils import build_library_balanced
+from archive.utils import make_business_calendar
+from archive.utils import simulate_future_gbm
+from archive.utils import arithmetic_average
+from archive.utils import build_library_balanced
 
 AVG_BUSINESS_DAYS = 20
 np.random.seed(42)

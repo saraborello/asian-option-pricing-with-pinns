@@ -27,7 +27,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-
+lambda_jump = 2.188
+mu_J        = 0.0196
+sigma_J     = 0.1817
 
 SEED = 42
 np.random.seed(SEED)
@@ -57,11 +59,14 @@ def evaluate_mae_pinn_vs_mc(
 
    print("\nRunning MC reference pricing...")
    for S in S_grid_real:
-       mc_price, _ = mc_asian_call_arith(
+       mc_price, _ = mc_asian_call_arith_jump(
            S0_real=S,
            K_real=K_real,
            r=r,
            sigma=sigma,
+           lambda_jump = lambda_jump, 
+           mu_J = mu_J , 
+           sigma_J = sigma_J,
            T=T,
            n_steps=n_steps_mc,
            n_paths=n_paths_mc,
@@ -196,11 +201,14 @@ def compute_mc_reference(
 
     for S in S_grid:
         t0 = time.perf_counter()
-        p, _ = mc_asian_call_arith(
+        p, _ = mc_asian_call_arith_jump(
             S0_real=S,
             K_real=K,
             r=r,
             sigma=sigma,
+            lambda_jump = lambda_jump, 
+            mu_J = mu_J , 
+            sigma_J = sigma_J,
             T=T,
             n_steps=n_steps,
             n_paths=n_paths,
@@ -317,7 +325,8 @@ def plot_price_delta_parity(
 
 # Master evaluation
 
-def run_full_evaluation(
+
+def run_full_evaluation_PIDE(
     model,
     S_grid,
     K,

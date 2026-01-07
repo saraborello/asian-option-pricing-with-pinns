@@ -67,3 +67,5 @@ def pinn_price_real(model, S0_real, K_real, r, sigma, t0=0.0):
    X = torch.cat([S_tilde, I_tilde, t, rr, ss], dim=1)
    V_tilde = model(X).item()
    return K_real * V_tilde
+
+

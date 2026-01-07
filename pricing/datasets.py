@@ -2,8 +2,8 @@
 import torch
 import torch.nn as nn
 
-from utils import safe_one_minus_exp_over_r
-from utils import payoff_K1_T1
+from archive.utils import safe_one_minus_exp_over_r
+from archive.utils import payoff_K1_T1
 
 SEED = 42
 torch.manual_seed(SEED)
